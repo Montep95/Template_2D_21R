@@ -33,12 +33,20 @@ public class gameManager : MonoBehaviour
     Vector2 force;
     float distance;
 
-    float decrease;
+    public GameObject star;
 
     void Start()
     {
         cam = Camera.main;
         player.DesactivateRb();
+
+        // 별 생성기
+        InvokeRepeating("makeStar", 0.0f, 1.0f); // 0.5초마다 생성
+    }
+
+    void makeStar()
+    {
+        Instantiate(star);
     }
 
     // Update is called once per frame
@@ -76,7 +84,6 @@ public class gameManager : MonoBehaviour
         direction = (startPoint - endPoint).normalized;
         force = direction * distance * pushForce;
         
-        decrease = 2f;
 
         Debug.DrawLine(startPoint, endPoint);
 
