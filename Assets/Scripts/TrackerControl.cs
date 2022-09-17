@@ -30,6 +30,7 @@ public class TrackerControl : MonoBehaviour
 
     void followTarget()
     {
+
         if(Vector2.Distance(transform.position, target.position) > contactDistance && follow)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
