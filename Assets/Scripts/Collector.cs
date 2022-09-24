@@ -12,4 +12,15 @@ public class Collector : MonoBehaviour
             collectible.Collect();
         }
     }
+
+    /*
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        ICollectible collectible = collision.GetComponent<ICollectible>();
+        if (collectible != null)
+        {
+            collectible.RCollect();
+        }
+    }
+    */
 }

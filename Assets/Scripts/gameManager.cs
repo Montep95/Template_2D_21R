@@ -13,11 +13,14 @@ public class gameManager : MonoBehaviour
     public Text timeText;
 
     public GameObject panel;
+    public GameObject Player;
+    public GameObject g_field;
 
-    float limit = 10.0f; // time Text
+    float limit = 15.0f; // time Text
 
     Camera cam;
 
+    public G_field gf;
     public Player player;
     public Trajectory trajectory;
 
@@ -58,18 +61,19 @@ public class gameManager : MonoBehaviour
     void initGame()
     {
         Time.timeScale = 1.0f;
-        limit = 10.0f;
+        limit = 15.0f;
         totalScore = 0;
     }
     void Start()
     {
+        initGame(); // 시작할때마다 initGame 호출로 'time, score' 초기화로 시작
         cam = Camera.main;
         player.DesactivateRb();
 
         // 별 생성기
         InvokeRepeating("makeStar", 0.0f, 1.0f); // 0.5초마다 생성
         
-        initGame(); // 시작할때마다 initGame 호출로 'time, score' 초기화로 시작
+        
     }
 
     void makeStar()
@@ -144,6 +148,14 @@ public class gameManager : MonoBehaviour
         totalScore += score;
         scoreText.text = totalScore.ToString();
     }
+
+    /*
+    public void minusScore(int score)
+    {
+        totalScore -= score;
+        scoreText.text = totalScore.ToString();
+    }
+    */
 
     // 다시하기 구현
     public void retry() 
