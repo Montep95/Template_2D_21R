@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    // star 오브젝트 사용
+    int p_type = star.s.type;
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,12 +45,23 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+         
+    }
+
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("OnTrigger Active!");
+        transform.localScale = new Vector3(transform.localScale.x + 1f * p_type * Time.deltaTime,
+                                            transform.localScale.y + 1f * p_type * Time.deltaTime, 0);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+           
     }
+
+    
 }

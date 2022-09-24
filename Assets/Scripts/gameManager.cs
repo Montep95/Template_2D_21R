@@ -1,22 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+using UnityEngine.SceneManagement; // Retry Scene 구현을 위함
 
 public class gameManager : MonoBehaviour
 {
+    // 변수 선언 **
+    public GameObject star;
+    public Text scoreText;
+    public Text timeText;
 
-    #region Singleton class: gamaManager
+    public GameObject panel;
 
-    public static gameManager Instance;
-
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
-    #endregion
+    float limit = 10.0f; // time Text
 
     Camera cam;
 
@@ -32,9 +30,37 @@ public class gameManager : MonoBehaviour
     Vector2 direction;
     Vector2 force;
     float distance;
+    
+    int totalScore = 0; // 점수 UI
+    // 변수 선언 **
 
-    public GameObject star;
 
+    #region Singleton class: gamaManager
+
+    // 점수UI
+    public static gameManager I;
+    //public static gameManager Instance;
+
+    void Awake()
+    {
+        // 점수 UI
+        I = this;
+        /*
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        */
+    }
+    #endregion
+
+    // retry 했을 경우 'Time'도 재실행
+    void initGame()
+    {
+        Time.timeScale = 1.0f;
+        limit = 10.0f;
+        totalScore = 0;
+    }
     void Start()
     {
         cam = Camera.main;
@@ -42,6 +68,8 @@ public class gameManager : MonoBehaviour
 
         // 별 생성기
         InvokeRepeating("makeStar", 0.0f, 1.0f); // 0.5초마다 생성
+        
+        initGame(); // 시작할때마다 initGame 호출로 'time, score' 초기화로 시작
     }
 
     void makeStar()
@@ -67,6 +95,16 @@ public class gameManager : MonoBehaviour
         {
             OnDrag();
         }
+
+        // 시간 관련 코드
+        limit -= Time.deltaTime; // 프레임마다 시간이 떨어짐
+        if(limit < 0)
+        {
+            limit = 0.0f;
+            panel.SetActive(true);
+            Time.timeScale = 0.0f; // Unity 모든 시간 Stop
+        }
+        timeText.text = limit.ToString("N2");
     }
 
     void OnDragStart()
@@ -97,5 +135,19 @@ public class gameManager : MonoBehaviour
         player.Push(force);
 
         trajectory.Hide();
+    }
+
+
+    // 점수 UI
+    public void addScore(int score)
+    {
+        totalScore += score;
+        scoreText.text = totalScore.ToString();
+    }
+
+    // 다시하기 구현
+    public void retry() 
+    {
+        SceneManager.LoadScene("myproject");
     }
 }
