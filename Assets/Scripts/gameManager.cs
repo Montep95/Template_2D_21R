@@ -9,6 +9,7 @@ public class gameManager : MonoBehaviour
 {
     // 변수 선언 **
     public GameObject star;
+    public GameObject b_star;
     public Text scoreText;
     public Text timeText;
 
@@ -24,7 +25,7 @@ public class gameManager : MonoBehaviour
     public Player player;
     public Trajectory trajectory;
 
-    [SerializeField] float pushForce = 4f;
+    [SerializeField] float pushForce = 1.0f;
 
     bool isDragging = false;
 
@@ -71,9 +72,10 @@ public class gameManager : MonoBehaviour
         player.DesactivateRb();
 
         // 별 생성기
-        InvokeRepeating("makeStar", 0.0f, 1.0f); // 0.5초마다 생성
-        
-        
+        InvokeRepeating("makeStar", 0.0f, 1.0f); // 0초 후에 시작하여 1초마다 생성
+
+        // 큰 별 생성기
+        InvokeRepeating("makeb_Star", 3.0f, 5.0f); // 3초 후에 시작하여 5초마다 생성
     }
 
     void makeStar()
@@ -81,20 +83,29 @@ public class gameManager : MonoBehaviour
         Instantiate(star);
     }
 
+    void makeb_Star()
+    {
+        Instantiate(b_star);
+    }
+
     // Update is called once per frame
     void Update()
     {
+        // 마우스 왼쪽 클릭
         if (Input.GetMouseButtonDown(0))
         {
             isDragging = true;
             OnDragStart();
         }
 
+        // 마우스 왼쪽 클릭 떼었을때
         if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;
             OnDragEnd();
         }
+
+        // 마우스 드래깅
         if (isDragging)
         {
             OnDrag();
@@ -160,6 +171,8 @@ public class gameManager : MonoBehaviour
     // 다시하기 구현
     public void retry() 
     {
+
         SceneManager.LoadScene("myproject");
+        
     }
 }

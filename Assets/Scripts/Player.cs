@@ -5,33 +5,29 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    // test (2022-09-29 13:44)
+    bool hasTarget;
+    Vector3 targetPosition;
+    float moveSpeed = 4f;
 
-    /* test
+    public GameObject g_field;// 중력장(가시성) 키우기
+    public GameObject MagnetCollider; // 중력장 키우기
+
+    //test
+    public GameObject panel;
     public GameObject star;
-    public float maxGravity;
-    public float maxGravityDist;
-    float lookAngle;
-    Vector3 lookDirection;
-    */
-
+    public GameObject b_star;
+    public GameObject b_starCollider;
 
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public CircleCollider2D col;
     [HideInInspector] public Vector3 pos
-
-
-
     {
         get
         {
             return transform.position;
         }
     }
-
-    /*
-    // star 오브젝트 사용
-    int p_type = Star.s.type;
-    */
 
     private void Awake()
     {
@@ -64,27 +60,26 @@ public class Player : MonoBehaviour
        
     }
 
-
-    /*
-    public void OnTriggerEnter2D(Collider2D collision)
+    // test (2022-09-29 13:44)
+    private void FixedUpdate()
     {
-        transform.localScale = new Vector3(transform.localScale.x + 0.5f * 1 * Time.deltaTime,
-                                            transform.localScale.y + 0.5f * 1 * Time.deltaTime, 0);
+        if (hasTarget)
+        {
+            Vector2 targetDirection = (targetPosition - transform.position).normalized;
+            rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * moveSpeed;
+        }
+
     }
-    */
 
-
+    public void SetTarget(Vector3 position)
+    {
+        targetPosition = position;
+        hasTarget = true;
+    }
 
     void Update()
     {
-        /*
-        float dist = Vector2.Distance(star.transform.position, transform.position);
-        Vector3 v = star.transform.position - transform.position;
-        //rb.AddForce(v.normalized * (1.0f - dist / maxGravityDist) * maxGravity);
-        lookDirection = star.transform.position - transform.position;
-        lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, lookAngle);
-        */
+
     }
 }
 

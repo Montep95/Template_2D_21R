@@ -5,19 +5,14 @@ using UnityEngine.UI;
 
 public class G_field : MonoBehaviour
 {
-
-    /* test
-    public GameObject star;
-    public float maxGravity;
-    public float maxGravityDist;
-    float lookAngle;
-    Vector3 lookDirection;
-    */
     #region Singleton class: G_field
 
     // test
     public static G_field G;
     //public static gameManager Instance;
+
+    // test (2022-09-29 14:33)
+    public GameObject Player;
 
     #endregion
 
@@ -25,20 +20,12 @@ public class G_field : MonoBehaviour
     [HideInInspector] public CircleCollider2D col;
     [HideInInspector]
     public Vector3 pos
-
-
-
     {
         get
         {
             return transform.position;
         }
     }
-
-    /*
-    // star 오브젝트 사용
-    int p_type = star.s.type;
-    */
 
     private void Awake()
     {
@@ -68,25 +55,15 @@ public class G_field : MonoBehaviour
 
     }
 
-
-    
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        transform.localScale = new Vector3(transform.localScale.x + 0.5f * 1 * Time.deltaTime,
-                                            transform.localScale.y + 0.5f * 1 * Time.deltaTime, 0);
-    }
-
-    public void Growing_field()
-    {
-        transform.localScale = new Vector3(transform.localScale.x + 0.5f * 1 * Time.deltaTime,
-                                            transform.localScale.y + 0.5f * 1 * Time.deltaTime, 0);
-    }
-    
-
-
     void Update()
     {
-       
+
+        if (gameObject.tag == "star")
+        {
+            // test (2022-09-29 14:25)
+            transform.localScale = new Vector3(transform.localScale.x + 0.15f * 1 * Time.deltaTime,
+                                                transform.localScale.y + 0.15f * 1 * Time.deltaTime, 0);
+        }
     }
 }
 
