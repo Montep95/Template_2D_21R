@@ -43,8 +43,8 @@ public class Player : MonoBehaviour
     public void ActivateRb()
     {
         rb.isKinematic = false;
-        transform.localScale = new Vector3(transform.localScale.x + 0.5f * 2 * Time.deltaTime,
-                                            transform.localScale.y + 0.5f * 2 * Time.deltaTime, 0);
+        //transform.localScale = new Vector3(transform.localScale.x + 0.5f * 2 * Time.deltaTime,
+        //                                transform.localScale.y + 0.5f * 2 * Time.deltaTime, 0);
     }
 
     public void DesactivateRb()
@@ -68,6 +68,18 @@ public class Player : MonoBehaviour
             Vector2 targetDirection = (targetPosition - transform.position).normalized;
             rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * moveSpeed;
         }
+
+        /*
+        if (gameObject.tag == "star")
+        {
+
+            // test (2022-09-29 14:25)
+            g_field.transform.localScale = new Vector3(transform.localScale.x + 2f * 1 * Time.deltaTime,
+                                                transform.localScale.y + 2f * 1 * Time.deltaTime, 0);
+            MagnetCollider.transform.localScale = new Vector3(transform.localScale.x + 2f * 1 * Time.deltaTime,
+                                                transform.localScale.y + 2f * 1 * Time.deltaTime, 0);
+        }
+        */
 
     }
 

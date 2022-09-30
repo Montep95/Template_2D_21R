@@ -34,7 +34,7 @@ public class B_Star : MonoBehaviour
 
     bool hasTarget;
     Vector3 targetPosition;
-    float moveSpeed = 1.0f;
+    float moveSpeed = 0.5f;
 
     // 크기 지정
     public int type; // 크기 유형
@@ -66,20 +66,14 @@ public class B_Star : MonoBehaviour
         if (type == 1)
         {
             size = 0.8f;
-
-            GetComponent<SpriteRenderer>().color = new Color(200.0f / 255.0f, 35.0f / 255.0f, 35.0f / 255.0f, 255.0f / 255.0f);
         }
         else if (type == 2)
         {
             size = 1.2f;
-
-            GetComponent<SpriteRenderer>().color = new Color(200.0f / 255.0f, 35.0f / 255.0f, 35.0f / 255.0f, 255.0f / 255.0f);
         }
         else
         {
             size = 1.7f;
-
-            GetComponent<SpriteRenderer>().color = new Color(200.0f / 255.0f, 35.0f / 255.0f, 35.0f / 255.0f, 255.0f / 255.0f);
         }
         transform.localScale = new Vector3(size, size, 0);
     }
@@ -110,17 +104,23 @@ public class B_Star : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    // Trigger -> Collision 
+    public void OnCollisionEnter2D(Collision2D collision)
     {
+        // star 태그에 닿으면 큰 블랙홀 크기 증가
         if (collision.gameObject.tag == "star")
         {
             transform.localScale = new Vector3(transform.localScale.x + 0.3f * 1 * Time.deltaTime,
                                             transform.localScale.y + 0.3f * 1 * Time.deltaTime, 0);
+            // star 제거 - 미작동
             Destroy(star);
         }
     }
-    public void OnTriggerExit2D(Collider2D collision)
+
+    // Trigger -> Collision
+    public void OnCollisionExit2D(Collision2D collision)
     {
+        // star 태그가 큰 블랙홀 벗어나면 크기 다시감소
         if (collision.gameObject.tag == "star")
         {
             transform.localScale = new Vector3(transform.localScale.x - 0.3f * 1 * Time.deltaTime,

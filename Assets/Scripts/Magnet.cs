@@ -13,6 +13,5 @@ public class Magnet : MonoBehaviour
             star.SetTarget(transform.parent.position);
 
         }
-
     }
 }

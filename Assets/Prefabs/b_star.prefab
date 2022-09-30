@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4539826629040413445}
   - component: {fileID: 4539826629040413440}
-  - component: {fileID: 4539826629040413443}
   - component: {fileID: 4539826629040413442}
+  - component: {fileID: 1827157764}
   m_Layer: 0
   m_Name: MagnetCollider
   m_TagString: Untagged
@@ -49,19 +49,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
---- !u!114 &4539826629040413443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4539826629040413444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a2b08a31e5307c4e87ddc56e915def5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 2
 --- !u!212 &4539826629040413442
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -114,6 +102,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1827157764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539826629040413444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5f2298a3b2ae3458d0b9f6ba533667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  b_star: {fileID: 4539826630137416968}
 --- !u!1 &4539826630137416968
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +128,7 @@ GameObject:
   - component: {fileID: 4539826630137417014}
   - component: {fileID: 4539826630137416969}
   - component: {fileID: 4539826630137417010}
+  - component: {fileID: 4793828168914626274}
   m_Layer: 0
   m_Name: b_star
   m_TagString: b_star
@@ -193,7 +195,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.7254902, g: 0.1459594, b: 0.1459594, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -259,6 +261,26 @@ MonoBehaviour:
   intensity: 0
   distanceToPlayer: 0
   type: 0
+--- !u!95 &4793828168914626274
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539826630137416968}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94cf2dfca448a0a4e9c63b686bba50fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4539826630273430404
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,6 +292,7 @@ GameObject:
   - component: {fileID: 4539826630273430405}
   - component: {fileID: 4539826630273430402}
   - component: {fileID: 1766681870}
+  - component: {fileID: 319668201}
   m_Layer: 0
   m_Name: b_starCollider
   m_TagString: b_starColl
@@ -320,3 +343,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cf370715e76ea44a09171bbc4d822e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &319668201
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539826630273430404}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.5, y: 2.5}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

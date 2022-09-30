@@ -47,5 +47,11 @@ public class MoveCamera : MonoBehaviour
         float clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
 
         transform.position = new Vector3(clampX, clampY, -10f);
+    
+        if((target.transform.localScale.x > 7) && (target.transform.localScale.y > 7))
+        {
+            size.x += 1;
+            size.y += 1;
+        }
     }
 }

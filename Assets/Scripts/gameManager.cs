@@ -144,8 +144,10 @@ public class gameManager : MonoBehaviour
         trajectory.UpdateDots(player.pos, force);
     }
 
+    // 드래그가 끝날때마다 호출 (제자리 눌렀다 떼었을때도 포함)
     void OnDragEnd()
     {
+        // Player.cs 의 ActivateRb()함수 호출 = localScale 변경 부분 주석처리
         player.ActivateRb();
         player.Push(force);
 
@@ -172,7 +174,6 @@ public class gameManager : MonoBehaviour
     public void retry() 
     {
 
-        SceneManager.LoadScene("myproject");
-        
+        SceneManager.LoadScene("myproject");   
     }
 }

@@ -1,14 +1,17 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-using Random = UnityEngine.Random; // Random ¸ğÈ£ÇÑ ÂüÁ¶ ÇØ°á
+using Random = UnityEngine.Random; // Random ëª¨í˜¸í•œ ì°¸ì¡° í•´ê²°
 
 public class Star : MonoBehaviour, ICollectible
 {
-    // test 2022-09-29 13:38
+    // test 2022-09-29 20:38
     public Transform CollectorCollider;
+    // public GameObject Player;
+    // public float speed;
+
 
     // test
     public GameObject G_field;
@@ -26,12 +29,12 @@ public class Star : MonoBehaviour, ICollectible
     Vector3 targetPosition;
     float moveSpeed = 4f;
 
-    // Á¡¼ö UI
+    // ì ìˆ˜ UI
     int score;
-    public int type; // Á¡¼ö ¹èÁ¡
+    public int type; // ì ìˆ˜ ë°°ì 
     float size;
 
-    // star »ç¿ë °øÀ¯ (½Ì±ÛÅæ)
+    // star ì‚¬ìš© ê³µìœ  (ì‹±ê¸€í†¤)
     #region Singleton class: Star
 
     public static Star s;
@@ -47,7 +50,7 @@ public class Star : MonoBehaviour, ICollectible
 
         transform.position = new Vector3(x, y, 0);
 
-        // Á¡¼ö UI
+        // ì ìˆ˜ UI
         type = Random.Range(1, 4);
         if(type == 1)
         {
@@ -80,12 +83,12 @@ public class Star : MonoBehaviour, ICollectible
     }
 
 
-    // Á¡¼ö È¹µæ ±¸Çö
+    // ì ìˆ˜ íšë“ êµ¬í˜„
     public void Collect()
     {
         //Debug.Log("Star Collected");
         gameManager.I.addScore(score);
-        // Destroy(gameObject); // ÆÄ±«µÇÁö ¾Ê°í ÀÚ¼®Ã³·³ µû¶ó´Ù³à¾ßÇÔ
+        // Destroy(gameObject); // íŒŒê´´ë˜ì§€ ì•Šê³  ìì„ì²˜ëŸ¼ ë”°ë¼ë‹¤ë…€ì•¼í•¨
         OnStarCollected?.Invoke();
     }
 
@@ -107,6 +110,13 @@ public class Star : MonoBehaviour, ICollectible
 
     public void Update()
     {
-
+        //OrbitAround();
     }
+
+    /*
+    public void OrbitAround()
+    {
+        transform.RotateAround(Player.transform.position, Vector3.down, speed * Time.deltaTime);
+    }
+    */
 }
